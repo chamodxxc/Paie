@@ -3,129 +3,122 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="shortcut icon" href="" type="image/x-icon">
+  <title>Whiteshadow-MD Session</title>
+  <link rel="shortcut icon" href="https://files.catbox.moe/fyr37r.jpg" type="image/x-icon">
   <style>
     body {
-      background-color: black;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin: 0;
-      color: white;
-    }
-
-    {
-            "@context": "https://schema.org",
-            "@type": "Organization",
-            "url": "https://railway.app",
-            "logo": "https://files.catbox.moe/39z8jd.jpg"
-    }
-
-    .button-container {
-      text-align: center;
+      background-color: #000;
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      color: #fff;
+    }
+
+    .button-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      text-align: center;
     }
 
     h3 {
-      margin-top: -40px;
-      opacity: 0;
-      animation: fadeIn 3s forwards;
+      color: #0ff;
+      font-size: 1.8rem;
+      text-shadow: 0 0 10px #0ff, 0 0 20px #32cd32, 0 0 30px #00ffcc;
+      animation: glowText 2s infinite alternate;
+      margin-bottom: 20px;
+    }
+
+    @keyframes glowText {
+      0% { text-shadow: 0 0 5px #0ff, 0 0 10px #32cd32; }
+      50% { text-shadow: 0 0 15px #00ffcc, 0 0 25px #0ff; }
+      100% { text-shadow: 0 0 20px #32cd32, 0 0 35px #0ff; }
     }
 
     .button {
-      width: 140px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 0px 15px;
-      background-color: red;
-      border-radius: 10px;
+      width: 180px;
+      padding: 12px 20px;
       border: none;
-      color: white;
-      position: relative;
-      cursor: pointer;
-      font-weight: 900;
-      transition-duration: .2s;
-      background: linear-gradient(0deg, #000, #272727);
-      text-decoration: none;
-    }
-
-  
-    footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background-color: #222; /* Darker gray footer background */
-    color: #fff;
-    padding: 10px 0;
-    text-align: center;
-    font-size: 14px;
-    
-  }
-    .button:before, .button:after {
-      content: '';
-      position: absolute;
-      left: -2px;
-      top: -2px;
       border-radius: 10px;
-      background: linear-gradient(45deg, #48ff00, #15ff00, #000000,#000000, #ff0000);
-      background-size: 400%;
-      width: calc(100% + 4px);
-      height: calc(100% + 4px);
-      z-index: -1;
-      animation: steam 10s linear infinite;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      cursor: pointer;
+      color: #fff;
+      position: relative;
+      text-decoration: none;
+      background: linear-gradient(45deg, #0ff, #32cd32, #0ff);
+      background-size: 300% 300%;
+      animation: gradientBG 5s ease infinite;
+      box-shadow: 0 0 5px #0ff, 0 0 10px #32cd32, 0 0 20px #0ff;
+      transition: 0.3s;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
-    @keyframes steam {
-      0% {
-        background-position: 0 0;
-      }
-
-      50% {
-        background-position: 400% 0;
-      }
-
-      100% {
-        background-position: 0 0;
-      }
+    .button:hover {
+      box-shadow: 0 0 15px #0ff, 0 0 25px #32cd32, 0 0 35px #0ff;
+      transform: scale(1.05);
     }
 
-    .button:after {
-      filter: blur(50px);
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
-    .button span {
-      z-index: 1;
+    p {
+      color: #aaa;
+      margin-top: 10px;
+      font-size: 0.9rem;
     }
 
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
+    footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background-color: #111;
+      color: #0ff;
+      padding: 10px 0;
+      text-align: center;
+      font-size: 14px;
+      text-shadow: 0 0 5px #0ff;
+    }
+
+    @media (max-width: 400px) {
+      .button {
+        width: 150px;
+        padding: 10px;
+        font-size: 0.9rem;
       }
     }
   </style>
 </head>
 <body>
   <div class="button-container">
-    <h3> DARK-KNIGHT-XMD SESSION</h3>
-    <div></div>
-    <a href="/pair" class="button" target="_blank"> <span>PAIRING-CODE</span> </a> <br>
-    <a href="https://dashboard.heroku.com/new?template=https://github.com/bot-deploy-main/DARK-KNIGHT-XMD" class="button" target="_blank"> <span>HEROKU</span> </a> <br>
-    <a href="https://chat.whatsapp.com/IGgPW6pTrH14oAWCJALYR5?mode=ac_c" class="button" target="_blank"> <span>GROUP</span> </a> <br>
-    <a href="https://whatsapp.com/channel/0029VbAM4eo3AzNQZ1WleW3e" class="button" target="_blank"> <span>CHANNEL</span> </a> <br>
+    <h3>Whiteshadow-MD SESSION</h3>
 
-    <p>HAVE ANY ERROR CLICK ERROR BUTTON</p>
+    <a href="/pair" class="button" target="_blank">PAIRING-CODE</a>
+    <a href="https://heroku.com/deploy?template=https://github.com/cnw-db/Whiteshadow-vx.git" class="button" target="_blank">HEROKU</a>
+    <a href="https://chat.whatsapp.com/IGgPW6pTrH14oAWCJALYR5?mode=ac_c" class="button" target="_blank">GROUP</a>
+    <a href="https://whatsapp.com/channel/0029Vb4bj5zI7BeFm6aM8O1p" class="button" target="_blank">CHANNEL</a>
 
-    <a href="https://wa.me/94763934860" class="button" target="_blank"> <span>ERROR</span> </a> <br>
+    <p>HAVE ANY ISSUE? CLICK ERROR BUTTON</p>
+    <a href="https://wa.me/94763934860" class="button" target="_blank">ERROR</a>
+  </div>
 
-    <footer>
-     DARK-KNIGHT &copy; <span id="currentYear"></span>
-    </footer>
-  
+  <footer>
+    Whiteshadow-MD &copy; <span id="currentYear"></span>
+  </footer>
+
+  <script>
+    document.getElementById("currentYear").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
