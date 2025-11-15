@@ -9,7 +9,7 @@
      "restart": "pm2 restart DARK-KNIGHT"
     },
    "dependencies": {
-    "@whiskeysockets/baileys": "npm:@zenzxz/baileys@latest",          
+    "@whiskeysockets/baileys": "npm:alisaai-baileys@latest",          
     "@adiwajshing/keyed-db": "^0.2.4",
     "awesome-phonenumber": "^2.64.0",
     "pino": "^8.1.0",
