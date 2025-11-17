@@ -4,17 +4,29 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Whiteshadow-MD Pair Code</title>
-  <link rel="stylesheet" href="css/all.min.css">
+
   <style>
     body {
+      margin: 0;
+      height: 100vh;
+      overflow: hidden;
+      font-family: 'Arial', sans-serif;
+      color: #fff;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      margin: 0;
-      background: url("https://files.catbox.moe/qeopdo.jpg") no-repeat center center/cover;
-      font-family: 'Arial', sans-serif;
-      color: #fff;
+    }
+
+    /* 🔥 Video Background */
+    #bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+      filter: brightness(60%);
     }
 
     .container {
@@ -22,15 +34,21 @@
       flex-direction: column;
       align-items: center;
       text-align: center;
+      z-index: 5;
+      width: 100%;
+      padding: 10px;
+      box-sizing: border-box;
     }
 
     .box {
-      width: 320px;
+      width: 100%;
+      max-width: 330px;
       padding: 25px;
-      background: rgba(0,0,0,0.75);
+      background: rgba(0, 0, 0, 0.75);
       border-radius: 12px;
       box-shadow: 0 0 20px #00ffcc, 0 0 40px #32cd32;
       backdrop-filter: blur(5px);
+      box-sizing: border-box;
     }
 
     .box h2 {
@@ -45,37 +63,33 @@
       margin-bottom: 20px;
     }
 
+    /* ⭐ Fixed Input Box */
     .input-container {
       display: flex;
-      gap: 0.3rem;
       width: 100%;
+      gap: 0;
+      margin-top: 10px;
     }
 
     .input-container input {
-      flex: 1;
-      padding: 0.8rem;
+      width: 100%;
+      padding: 12px;
       border-radius: 8px 0 0 8px;
       border: none;
       background: #222;
-      color: #fff;
+      color: white;
       font-size: 1rem;
-    }
-
-    .input-container input:focus {
-      outline: 2px solid #00ffcc;
-      background: #111;
+      box-sizing: border-box;
     }
 
     .input-container button {
-      padding: 0.8rem;
+      padding: 12px 15px;
       border: none;
       border-radius: 0 8px 8px 0;
       background: linear-gradient(135deg, #00ffcc, #32cd32);
       font-weight: bold;
-      letter-spacing: 0.1rem;
-      color: #000;
       cursor: pointer;
-      transition: all 0.3s ease;
+      transition: .3s ease;
     }
 
     .input-container button:hover {
@@ -86,14 +100,8 @@
     #pair {
       margin-top: 20px;
       font-weight: bold;
-      word-break: break-word;
       color: #fffa;
-    }
-
-    #copy:hover {
-      cursor: pointer;
-      color: #00ffcc;
-      text-shadow: 0 0 10px #00ffcc;
+      word-break: break-word;
     }
 
     .glowing-text {
@@ -106,51 +114,50 @@
     }
 
     @keyframes glow {
-      0% {
-        text-shadow: 0 0 5px #00ffcc, 0 0 10px #32cd32, 0 0 15px #00ffcc;
-      }
-      50% {
-        text-shadow: 0 0 10px #32cd32, 0 0 20px #00ffcc, 0 0 30px #32cd32;
-      }
-      100% {
-        text-shadow: 0 0 15px #00ffcc, 0 0 30px #32cd32, 0 0 45px #00ffcc;
-      }
+      0% { text-shadow: 0 0 5px #00ffcc, 0 0 10px #32cd32; }
+      50% { text-shadow: 0 0 20px #00ffcc, 0 0 30px #32cd32; }
+      100% { text-shadow: 0 0 40px #00ffcc, 0 0 60px #32cd32; }
     }
 
-    @media (max-width: 400px) {
-      .box {
-        width: 90%;
-        padding: 20px;
-      }
-
+    @media (max-width: 450px) {
       .input-container {
         flex-direction: column;
       }
-
       .input-container input,
       .input-container button {
-        border-radius: 8px;
         width: 100%;
+        border-radius: 8px;
       }
     }
   </style>
 </head>
+
 <body>
+
+  <!-- 🔥 Background Video -->
+  <video id="bg-video" autoplay muted loop playsinline>
+    <source src="https://files.catbox.moe/llpps3.mp4" type="video/mp4">
+  </video>
+
   <div class="container">
     <div class="box">
       <h2>Whiteshadow-MD PAIR</h2>
       <h6>⚙ Enter your number with country code ⚙</h6>
+
       <div class="input-container">
-        <input type="number" id="number" placeholder="9477XXXX">
+        <input type="number" id="number" placeholder="9477XXXXXX">
         <button id="submit">ENTER</button>
       </div>
+
       <div id="waiting-message" style="display:none;margin-top:10px;color:#0ff;">Processing...</div>
       <div id="pair"></div>
     </div>
+
     <div class="glowing-text">Powered by Whiteshadow-MD</div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
   <script>
     const pairContainer = document.getElementById("pair");
     const submitBtn = document.getElementById("submit");
@@ -171,21 +178,27 @@
     submitBtn.addEventListener("click", async (e) => {
       e.preventDefault();
       const number = numberInput.value.replace(/[^0-9]/g,'');
-      if(!number) {
+
+      if (!number) {
         pairContainer.innerHTML = '<span style="color:red">❗ Enter your WhatsApp number</span>';
         return;
       }
+
       waitingMessage.style.display = 'block';
+
       try {
         const { data } = await axios(`/code?number=${number}`);
         const code = data.code || "Service Unavailable";
+
         waitingMessage.style.display = 'none';
-        pairContainer.innerHTML = `<span id="copy" data-original="CODE: ${code}" onclick="copyCode()" style="color:#0ff;cursor:pointer;font-weight:bold">CODE: ${code}</span>`;
+        pairContainer.innerHTML =
+          `<span id="copy" data-original="CODE: ${code}" onclick="copyCode()" style="color:#0ff;font-weight:bold;cursor:pointer">CODE: ${code}</span>`;
       } catch (err) {
         waitingMessage.style.display = 'none';
         pairContainer.innerHTML = '<span style="color:red">❌ Failed to generate code</span>';
       }
     });
   </script>
+
 </body>
 </html>
