@@ -4,9 +4,9 @@
     "description": "A multi functional whatsapp bot Web paircode.",
     "main": "index.js",
     "scripts": {
-      "start": "pm2 start index.js --deep-monitoring --attach --name DARK-KNIGHT",
-      "stop": "pm2 stop DARK-KNIGHT",
-     "restart": "pm2 restart DARK-KNIGHT"
+      "start": "pm2 start index.js --deep-monitoring --attach --name WHITESHADOW-MD",
+      "stop": "pm2 stop WHITESHADOW-MD",
+     "restart": "pm2 restart WHITESHADOW-MD"
     },
    "dependencies": {
     "@whiskeysockets/baileys": "npm:alisaai-baileys@latest",          
